@@ -12,11 +12,11 @@ public class TypeTester {
 		int ifoo = 10;
 		int ibar = 10;
 		System.out.print("Who is this? ");
-		String accepter = inlet.nextLine();
+		String user = inlet.nextLine();
 		
 		String dog;
 		
-		if (accepter.equals("dog"))
+		if (user.equals("dog"))
 		{
 			dog = "Yes, this is dog";
 		}
