@@ -3,6 +3,7 @@ package sectionOne;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
+@SuppressWarnings("unused")
 public class GeometriCalc {
 
 	public static void main(String[] args) {
