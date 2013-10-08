@@ -79,7 +79,9 @@ public class ReadWriteTwo {
             System.out.println("The product of " + firstNumd + " and " + secondNumd + " is " + multd);
             
             
-            if (secondNum == 0)
+            @SuppressWarnings("unused")
+			boolean dbaDb = divisibleDb(secondNumd);
+            if (dbaDb = false)
             	System.out.println("The quotient of " + firstNumd + " and " + secondNumd + " cannot be resolved. | (ERR: DIV/0)");
             else
             {
