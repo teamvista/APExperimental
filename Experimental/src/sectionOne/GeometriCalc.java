@@ -3,7 +3,7 @@ package sectionOne;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
-@SuppressWarnings("unused") //todo DecFormat, heron's formula
+@SuppressWarnings("unused")
 public class GeometriCalc {
 
 	public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class GeometriCalc {
         System.out.println();
         
         //declare vars
-        double width, height, base, radius;
+        double width, height, radius, side1, side2, side3;
         String transChar;
         
         System.out.print("Please select a shape abstratus. | [r]ectangle | [t]riangle | [c]ircle | >");
@@ -41,12 +41,14 @@ public class GeometriCalc {
         	case 't':
         	case 'T':
         		System.out.println("Triangle chosen.");
-        		System.out.print("Please enter base: ");
-        		base = inlet.nextDouble();
-        		System.out.print("Please enter height: ");
-        		height = inlet.nextDouble();
-        		double trig = calcRectangle(base, height);
-        		System.out.println("The area of a rectangle with base " + base + " and height " + height + " is " + trig);
+        		System.out.print("Please enter side 1: ");
+        		side1 = inlet.nextDouble();
+        		System.out.print("Please enter side 2: ");
+        		side2 = inlet.nextDouble();
+        		System.out.print("Please enter side 3: ");
+        		side3 = inlet.nextDouble();
+        		double trig = calcTriangle(side1, side2, side3);
+        		System.out.println("The area of a rectangle with sides " + side1 + ", " + side2 + ", and " + side3 + " is " + trig);
         		break;
         		
         	case 'c':
@@ -72,9 +74,20 @@ public class GeometriCalc {
 		return foo;
 	}
 	
-	public static double calcTriangle (double b, double h) {
-		double bar = (0.5*b) * h;
-		return bar;
+	public static double calcTriangle (double s1, double s2, double s3) {
+		double sumSides = (s1 + s2 + s3) /2;
+		double heronFMLA = Math.sqrt(( (sumSides) * (sumSides - s1) * (sumSides - s2) * (sumSides - s3) ));
+		return heronFMLA;
+	}
+	
+	public static boolean checkIfTriangle (double s1, double s2, double s3) {
+		if (!( (s1 + s2) < s3))
+			return false;
+		else if (!( (s1 + s3) < s2 ))
+			return false;
+		else if (!( (s2 + s3) < s1 ))
+			return false;
+		else return true;
 	}
 	
 	public static double calcCircle (double r) {
