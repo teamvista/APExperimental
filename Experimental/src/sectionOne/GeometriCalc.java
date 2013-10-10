@@ -21,7 +21,7 @@ public class GeometriCalc {
         double width, height, radius, side1, side2, side3;
         String transChar;
         
-        System.out.print("Please select a shape abstratus. | [r]ectangle | [t]riangle | [c]ircle | >");
+        System.out.print("Please select a shape abstratus. | [r]ectangle | [t]riangle | [c]ircle | > ");
         transChar = inlet.nextLine(); //transChar means transition to char
         char caseSelector = transChar.charAt(0);
         
@@ -48,7 +48,13 @@ public class GeometriCalc {
         		System.out.print("Please enter side 3: ");
         		side3 = inlet.nextDouble();
         		double trig = calcTriangle(side1, side2, side3);
-        		System.out.println("The area of a rectangle with sides " + side1 + ", " + side2 + ", and " + side3 + " is " + trig);
+        		
+        		boolean checkIfValidTriangle = checkIfTriangle(side1, side2, side3);
+        		
+        		if (checkIfValidTriangle = false)
+        			System.out.println("Invalid triangle.");
+        		else
+        			System.out.println("The area of a rectangle with sides " + side1 + ", " + side2 + ", and " + side3 + " is " + trig);
         		break;
         		
         	case 'c':
