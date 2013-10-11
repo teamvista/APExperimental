@@ -3,6 +3,7 @@ package sectionOne;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
+
 @SuppressWarnings("unused")
 public class GeometriCalc {
 
@@ -25,6 +26,7 @@ public class GeometriCalc {
         transChar = inlet.nextLine(); //transChar means transition to char
         char caseSelector = transChar.charAt(0);
         
+        // <switch case>
         switch(caseSelector)
         {
         	case 'r':
@@ -36,6 +38,7 @@ public class GeometriCalc {
         		height = inlet.nextDouble();
         		double rect = calcRectangle(width, height);
         		System.out.println("The area of a rectangle with width " + width + " and height " + height + " is " + rect);
+        		System.out.println("The perimeter of the same rectangle is " + (2*width + 2*height));
         		break;
         		
         	case 't':
@@ -47,14 +50,17 @@ public class GeometriCalc {
         		side2 = inlet.nextDouble();
         		System.out.print("Please enter side 3: ");
         		side3 = inlet.nextDouble();
-        		double trig = calcTriangle(side1, side2, side3);
         		
         		boolean checkIfValidTriangle = checkIfTriangle(side1, side2, side3);
         		
-        		if (checkIfValidTriangle = false)
+        		if (!checkIfValidTriangle)
         			System.out.println("Invalid triangle.");
-        		else
-        			System.out.println("The area of a rectangle with sides " + side1 + ", " + side2 + ", and " + side3 + " is " + trig);
+        		else 
+        		{
+        			double trig = calcTriangle(side1, side2, side3);
+        			System.out.println("The area of a triangle with sides " + side1 + ", " + side2 + ", and " + side3 + " is " + trig);
+        			System.out.println("The perimeter of the same triangle is " + (side1 + side2 + side3));
+        		}
         		break;
         		
         	case 'c':
@@ -66,6 +72,10 @@ public class GeometriCalc {
         		System.out.println("The area of a circle with radius " + radius + " is " + circ);
         		break;
         }
+        
+        System.out.println();
+        // </switch>
+        
         
         System.out.println();
         System.out.println("# # # # # # # # # # # # # # # # # # # #");
@@ -87,11 +97,11 @@ public class GeometriCalc {
 	}
 	
 	public static boolean checkIfTriangle (double s1, double s2, double s3) {
-		if (!( (s1 + s2) < s3))
+		if (!( (s1 + s2) > s3))
 			return false;
-		else if (!( (s1 + s3) < s2 ))
+		else if (!( (s1 + s3) > s2 ))
 			return false;
-		else if (!( (s2 + s3) < s1 ))
+		else if (!( (s2 + s3) > s1 ))
 			return false;
 		else return true;
 	}
