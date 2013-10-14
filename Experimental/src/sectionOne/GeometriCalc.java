@@ -23,6 +23,7 @@ public class GeometriCalc {
             double width, height, radius, side1, side2, side3;
             String transChar;
             
+            System.out.println("========Iteration " + (i+1) + " of 6========");
             System.out.print("Please select a shape abstratus. | [r]ectangle | [t]riangle | [c]ircle | > ");
             transChar = inlet.next(); //transChar means transition to char
             char caseSelector = transChar.charAt(0);
