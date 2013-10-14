@@ -4,7 +4,6 @@ import java.util.Scanner;
 import java.text.DecimalFormat;
 
 
-@SuppressWarnings("unused")
 public class GeometriCalc {
 
 	public static void main(String[] args) {
@@ -37,8 +36,8 @@ public class GeometriCalc {
         		System.out.print("Please enter height: ");
         		height = inlet.nextDouble();
         		double rect = calcRectangle(width, height);
-        		System.out.println("The area of a rectangle with width " + width + " and height " + height + " is " + rect);
-        		System.out.println("The perimeter of the same rectangle is " + (2*width + 2*height));
+        		System.out.println("The area of a rectangle with width " + width + " and height " + height + " is " + float2(rect));
+        		System.out.println("The perimeter of the same rectangle is " + float2((2*width + 2*height)));
         		break;
         		
         	case 't':
@@ -58,8 +57,8 @@ public class GeometriCalc {
         		else 
         		{
         			double trig = calcTriangle(side1, side2, side3);
-        			System.out.println("The area of a triangle with sides " + side1 + ", " + side2 + ", and " + side3 + " is " + trig);
-        			System.out.println("The perimeter of the same triangle is " + (side1 + side2 + side3));
+        			System.out.println("The area of a triangle with sides " + side1 + ", " + side2 + ", and " + side3 + " is " + float2(trig));
+        			System.out.println("The perimeter of the same triangle is " + float2((side1 + side2 + side3)));
         		}
         		break;
         		
@@ -69,8 +68,12 @@ public class GeometriCalc {
         		System.out.print("Please enter radius: ");
         		radius = inlet.nextDouble();
         		double circ = calcCircle(radius);
-        		System.out.println("The area of a circle with radius " + radius + " is " + circ);
+        		System.out.println("The area of a circle with radius " + radius + " is " + float2(circ));
+        		System.out.println("The circumference of the same circle is " + float2(radius * (2*Math.PI)));
         		break;
+    		default:
+    			System.out.println("Invalid request.");
+    			break;
         }
         
         System.out.println();
@@ -83,6 +86,12 @@ public class GeometriCalc {
     	System.out.println("# # # # # # # # # # # # # # # # # # # #");
         inlet.close();
 
+	}
+	
+	public static String float2(double n) {
+		DecimalFormat formatN = new DecimalFormat("#,###.00");
+		String modifiedN = formatN.format(n);
+		return modifiedN;
 	}
 	
 	public static double calcRectangle (double w, double h) {
@@ -107,7 +116,7 @@ public class GeometriCalc {
 	}
 	
 	public static double calcCircle (double r) {
-		double baz = r * (2*Math.PI);
+		double baz = Math.PI * Math.pow(r, 2);
 		return baz;
 	}
 
