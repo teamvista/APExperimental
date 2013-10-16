@@ -11,7 +11,7 @@ public class BalloonApplet extends Applet
 	private static final long serialVersionUID = 1L; //serialID, don't touch
 	
 	
-	Button right, left, up, down;
+	Button east, west, north, south;
     public static final int DISPLAY_WIDTH = 600;// this is a constant
     public static final int DISPLAY_HEIGHT = 600;// this is also a constant
     private int startX = DISPLAY_WIDTH/2;
@@ -19,26 +19,27 @@ public class BalloonApplet extends Applet
     
     public void init()
     {
-        left = new Button ("<==");
-        add (left);
-        left.addActionListener (this); 
+        west = new Button ("<==");
+        add (west);
+        west.addActionListener (this); 
         
-        up = new Button ("^^^");
-        add (up);
-        up.addActionListener (this); 
+        north = new Button ("^^^");
+        add (north);
+        north.addActionListener (this); 
         
-        down = new Button ("vvv");
-        add (down);
-        down.addActionListener (this); 
+        south = new Button ("vvv");
+        add (south);
+        south.addActionListener (this); 
         
-        right = new Button ("==>");
-        add (right);
-        right.addActionListener (this); 
+        east = new Button ("==>");
+        add (east);
+        east.addActionListener (this); 
     }// endInit 
     
     public void paint(Graphics g)
     {
         resize(DISPLAY_WIDTH,500);
+        resize(DISPLAY_HEIGHT,500);
         setBackground(Color.CYAN);
         g.setColor(Color.BLACK);
         g.fillOval(startX-50,startY-50,50,75);//no longer a weird balloon :P
@@ -46,34 +47,34 @@ public class BalloonApplet extends Applet
     
     public void actionPerformed(ActionEvent clic)//import java.awt.event.*;  goes with ActionListener and actionPerformed
     {
-        if ( clic.getSource()== right)
-            doRight();
-        else if (clic.getSource()== left)
-        	doLeft();
-        else if (clic.getSource()== up)
-        	doitUp();
-        else if (clic.getSource()== down)
-        	dropitDown();
+        if (clic.getSource()== east)
+            goEast();
+        else if (clic.getSource()== west)
+        	goWest();
+        else if (clic.getSource()== north)
+        	goNorth();
+        else if (clic.getSource()== south)
+        	goSouth();
         
         repaint();
     }//endActionPerformed
     
-    public void doRight()
+    public void goEast()
     {
         startX+=50;
     }
     
-    public void doLeft()
+    public void goWest()
     {
         startX-=50;
     }
     
-    public void doitUp()
+    public void goNorth()
     {
         startY-=50;
     }
     
-    public void dropitDown()
+    public void goSouth()
     {
         startY+=50;
     }
