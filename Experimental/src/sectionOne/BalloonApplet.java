@@ -132,21 +132,21 @@ public class BalloonApplet extends Applet
     
     public void goEast()
     {
-        startX+=5;
+        startX+=10;
     }
     public void goWest()
     {
-        startX-=5;
+        startX-=10;
     }
     
     public void goNorth()
     {
-        startY-=2;
+        startY-=10;
     }
     
     public void goSouth()
     {
-        startY+=2;
+        startY+=10;
     }
     public void goNorthEast()
     {
