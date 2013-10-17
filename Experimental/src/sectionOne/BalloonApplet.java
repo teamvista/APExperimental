@@ -12,8 +12,10 @@ public class BalloonApplet extends Applet
 	
 	
 	Button east, west, north, south, northWest, northEast, southWest, southEast, farUL, farUR, farLL, farLR, midpoint;
-    public static final int DISPLAY_WIDTH = 600;
-    public static final int DISPLAY_HEIGHT = 600;
+    public int displayWidth = 600;
+    public int displayHeight = 600;
+    public int boundX = displayWidth-50;
+    public int boundY = displayHeight-176;
     
     // Set to true to print coordinates of balloon to console /////
     public static final boolean CONSOLE_LOGGING_ENABLED = false; //
@@ -88,8 +90,7 @@ public class BalloonApplet extends Applet
     
     public void paint(Graphics g)
     {
-        resize(DISPLAY_WIDTH,500);
-        resize(DISPLAY_HEIGHT,500);
+        resize(displayWidth, displayHeight);
         setBackground(Color.CYAN);
         g.setColor(Color.BLACK);
         g.fillOval(startX,startY,50,75);//no longer a weird balloon  
@@ -132,38 +133,41 @@ public class BalloonApplet extends Applet
     
     public void goEast()
     {
-        startX+=10;
+    	if (startX+10 <= boundX)
+    		startX+=10;
+    	else
+    		startX += Math.abs(boundX-startX);
     }
-    public void goWest()
+    public void goWest() //TODO implement bounds
     {
         startX-=10;
     }
     
-    public void goNorth()
+    public void goNorth() //TODO implement bounds
     {
         startY-=10;
     }
     
-    public void goSouth()
+    public void goSouth() //TODO implement bounds
     {
         startY+=10;
     }
-    public void goNorthEast()
+    public void goNorthEast() //TODO implement bounds
     {
         startX+=10;
         startY-=10;
     }
-    public void goNorthWest()
+    public void goNorthWest() //TODO implement bounds
     {
         startX-=10;
         startY-=10;
     }
-    public void goSouthEast()
+    public void goSouthEast() //TODO implement bounds
     {
         startX-=10;
     	startY+=10;
     }
-    public void goSouthWest()
+    public void goSouthWest() //TODO implement bounds
     {
     	startX+=10;
         startY+=10;
