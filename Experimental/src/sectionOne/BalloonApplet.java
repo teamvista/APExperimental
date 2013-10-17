@@ -52,7 +52,7 @@ public class BalloonApplet extends Applet
         add (southWest);
         southWest.addActionListener (this); 
         
-        southEast = new Button ("SouthEast");
+        southEast = new Button ("Southeast");
         add (southEast);
         southEast.addActionListener (this); 
         
