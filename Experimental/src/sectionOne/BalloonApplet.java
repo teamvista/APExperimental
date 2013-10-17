@@ -11,15 +11,20 @@ public class BalloonApplet extends Applet
 	private static final long serialVersionUID = 1L; //serialID, don't touch
 	
 	
-	Button east, west, north, south, northWest, northEast, southWest, southEast;
-    public static final int DISPLAY_WIDTH = 600;// this is a constant
-    public static final int DISPLAY_HEIGHT = 600;// this is also a constant
-    private int startX = DISPLAY_WIDTH/2;
-    private int startY = DISPLAY_WIDTH/2;
+	Button east, west, north, south, northWest, northEast, southWest, southEast, farUL, farUR, farLL, farLR, midpoint;
+    public static final int DISPLAY_WIDTH = 600;
+    public static final int DISPLAY_HEIGHT = 600;
     
+    // Set to true to print coordinates of balloon to console /////
+    public static final boolean CONSOLE_LOGGING_ENABLED = false; //
+    ///////////////////////////////////////////////////////////////
+    
+    private int startX = 275;
+    private int startY = 212;    
     public void init()
     {
-        west = new Button ("West");
+    	
+		west = new Button ("West");
         add (west);
         west.addActionListener (this); 
         
@@ -50,6 +55,35 @@ public class BalloonApplet extends Applet
         southEast = new Button ("SouthEast");
         add (southEast);
         southEast.addActionListener (this); 
+        
+        farUL = new Button ("Go to upper-left corner");
+        add (farUL);
+        farUL.addActionListener (this); 
+        
+        farUR = new Button ("Go to upper-right corner");
+        add (farUR);
+        farUR.addActionListener (this); 
+        
+        farLL = new Button ("Go to lower-left corner");
+        add (farLL);
+        farLL.addActionListener (this); 
+        
+        farLR = new Button ("Go to lower-right corner");
+        add (farLR);
+        farLR.addActionListener (this); 
+        
+        midpoint = new Button ("Go to the exact center");
+        add (midpoint);
+        midpoint.addActionListener (this); 
+        
+        if (CONSOLE_LOGGING_ENABLED)
+        {
+        	System.out.println("Console tracking enabled.");
+        	System.out.println("");
+        	System.out.println("   x    |   y    ");
+        	System.out.println("--------+--------");
+        }
+        
     }// endInit 
     
     public void paint(Graphics g)
@@ -79,14 +113,22 @@ public class BalloonApplet extends Applet
         	goSouthWest();
         else if (clic.getSource()== southEast)
         	goSouthEast();
+        else if (clic.getSource()== farUL)
+        	goToULCorner();
+        else if (clic.getSource()== farUR)
+        	goToURCorner();
+        else if (clic.getSource()== farLL)
+        	goToLLCorner();
+        else if (clic.getSource()== farLR)
+        	goToLRCorner();
+        else if (clic.getSource()== midpoint)
+        	goToCenter();
+        	
+        if (CONSOLE_LOGGING_ENABLED)
+        System.out.println(" " + startX + "\t| " + startY);
         
-        System.out.println(startX + " " + startY);
         repaint();
     }//endActionPerformed
-    
-    //TODO midpoint (275, 212)
-    //TODO extreme RD (550, 424)
-    //TODO extreme LU (0, 0)
     
     public void goEast()
     {
@@ -131,15 +173,25 @@ public class BalloonApplet extends Applet
     	startX=275;
         startY=212;
     }
-    public void goToDRCorner()
-    {
-    	startX=550;
-        startY=424;
-    }
     public void goToULCorner()
     {
     	startX=0;
         startY=0;
+    }
+    public void goToURCorner()
+    {
+    	startX=550;
+        startY=0;
+    }
+    public void goToLLCorner()
+    {
+    	startX=0;
+        startY=424;
+    }
+    public void goToLRCorner()
+    {
+    	startX=550;
+        startY=424;
     }
     
 }   //endProgram    
