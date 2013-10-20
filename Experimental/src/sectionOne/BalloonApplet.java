@@ -15,14 +15,14 @@ public class BalloonApplet extends Applet
     public int displayWidth = 600;
     public int displayHeight = 600;
     public int boundX = displayWidth-50;
-    public int boundY = displayHeight-176;
+    public int boundY = displayHeight-76;
     
     // Set to true to print coordinates of balloon to console /////
     public static final boolean CONSOLE_LOGGING_ENABLED = false; //
     ///////////////////////////////////////////////////////////////
     
-    private int startX = 275;
-    private int startY = 212;    
+    private int startX = boundX/2;
+    private int startY = boundY/2;    
     public void init()
     {
     	
@@ -92,7 +92,7 @@ public class BalloonApplet extends Applet
     {
         resize(displayWidth, displayHeight);
         setBackground(Color.CYAN);
-        g.setColor(Color.BLACK);
+        g.setColor(Color.BLUE);
         g.fillOval(startX,startY,50,75);//no longer a weird balloon  
     }//endPaint
     
@@ -138,44 +138,53 @@ public class BalloonApplet extends Applet
     	else
     		startX += Math.abs(boundX-startX);
     }
-    public void goWest() //TODO implement bounds
+    public void goWest()
     {
-        startX-=10;
+    	if (startX-10 >= 0)
+    		startX-=10;
+    	else
+    		startX -= Math.abs(0+startX);
     }
     
-    public void goNorth() //TODO implement bounds
+    public void goNorth()
     {
-        startY-=10;
+    	if (startY-10 >= 0)
+    		startY-=10;
+    	else
+    		startY -= Math.abs(0+startY);
     }
     
-    public void goSouth() //TODO implement bounds
+    public void goSouth() 
     {
-        startY+=10;
+    	if (startY+10 <= boundY)
+    		startY+=10;
+    	else
+    		startY += Math.abs(boundY-startY);
     }
-    public void goNorthEast() //TODO implement bounds
+    public void goNorthEast() 
     {
-        startX+=10;
-        startY-=10;
+    	goNorth();
+    	goEast();
     }
-    public void goNorthWest() //TODO implement bounds
+    public void goNorthWest() 
     {
-        startX-=10;
-        startY-=10;
+    	goNorth();
+    	goWest();
     }
-    public void goSouthEast() //TODO implement bounds
+    public void goSouthEast() 
     {
-        startX-=10;
-    	startY+=10;
+    	goSouth();
+    	goEast();
     }
-    public void goSouthWest() //TODO implement bounds
+    public void goSouthWest() 
     {
-    	startX+=10;
-        startY+=10;
+    	goSouth();
+    	goWest();
     }
     public void goToCenter()
     {
-    	startX=275;
-        startY=212;
+    	startX=boundX/2;
+        startY=boundY/2;
     }
     public void goToULCorner()
     {
@@ -184,18 +193,18 @@ public class BalloonApplet extends Applet
     }
     public void goToURCorner()
     {
-    	startX=550;
+    	startX=boundX;
         startY=0;
     }
     public void goToLLCorner()
     {
     	startX=0;
-        startY=424;
+        startY=boundY;
     }
     public void goToLRCorner()
     {
-    	startX=550;
-        startY=424;
+    	startX=boundX;
+        startY=boundY;
     }
     
 }   //endProgram    
