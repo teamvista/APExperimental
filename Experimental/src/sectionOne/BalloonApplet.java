@@ -92,8 +92,11 @@ public class BalloonApplet extends Applet
     {
         resize(displayWidth, displayHeight);
         setBackground(Color.CYAN);
+        g.setColor(Color.BLACK);
+        g.drawLine(startX+25, startY+75, displayWidth/2, displayHeight);
         g.setColor(Color.BLUE);
-        g.fillOval(startX,startY,50,75);//no longer a weird balloon  
+        g.fillOval(startX,startY,50,75);//no longer a weird balloon
+        g.setColor(Color.BLACK); 
     }//endPaint
     
     public void actionPerformed(ActionEvent clic)//import java.awt.event.*;  goes with ActionListener and actionPerformed
