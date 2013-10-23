@@ -11,7 +11,9 @@ public class BalloonApplet extends Applet
 	private static final long serialVersionUID = 1L; //serialID, don't touch
 	
 	
-	Button east, west, north, south, northWest, northEast, southWest, southEast, farUL, farUR, farLL, farLR, midpoint;
+	Button east, west, north, south, northWest, northEast, southWest, southEast;
+	Button farUL, farUR, farLL, farLR, midpoint;
+	Button enlargeHoriz, shrinkHoriz, enlargeVert, shrinkVert;
     public int displayWidth = 600;
     public int displayHeight = 600;
     public int boundX = displayWidth-50;
@@ -25,7 +27,7 @@ public class BalloonApplet extends Applet
     private int startY = boundY/2;    
     public void init()
     {
-    	
+    	// cardinals
 		west = new Button ("West");
         add (west);
         west.addActionListener (this); 
@@ -42,6 +44,7 @@ public class BalloonApplet extends Applet
         add (east);
         east.addActionListener (this); 
         
+        //secondaries
         northWest = new Button ("Northwest");
         add (northWest);
         northWest.addActionListener (this); 
@@ -58,6 +61,7 @@ public class BalloonApplet extends Applet
         add (southEast);
         southEast.addActionListener (this); 
         
+        // jumps
         farUL = new Button ("Go to upper-left corner");
         add (farUL);
         farUL.addActionListener (this); 
@@ -76,8 +80,26 @@ public class BalloonApplet extends Applet
         
         midpoint = new Button ("Go to the exact center");
         add (midpoint);
-        midpoint.addActionListener (this); 
+        midpoint.addActionListener (this);
         
+        // enlarge/shrink applet
+        enlargeHoriz = new Button ("Horiz +");
+        add (enlargeHoriz);
+        enlargeHoriz.addActionListener (this);
+        
+        shrinkHoriz = new Button ("Horiz -");
+        add (shrinkHoriz);
+        shrinkHoriz.addActionListener (this);
+        
+        enlargeVert = new Button ("Vert +");
+        add (enlargeVert);
+        enlargeVert.addActionListener (this);
+        
+        shrinkVert = new Button ("Vert -");
+        add (shrinkVert);
+        shrinkVert.addActionListener (this);
+        
+        //detects if enabled, prints to console when run
         if (CONSOLE_LOGGING_ENABLED)
         {
         	System.out.println("Console tracking enabled.");
@@ -127,6 +149,14 @@ public class BalloonApplet extends Applet
         	goToLRCorner();
         else if (clic.getSource()== midpoint)
         	goToCenter();
+        else if (clic.getSource()== enlargeHoriz)
+        	enlargeHoriz();
+        else if (clic.getSource()== shrinkHoriz)
+        	shrinkHoriz();
+        else if (clic.getSource()== enlargeVert)
+        	enlargeVert();
+        else if (clic.getSource()== shrinkVert)
+        	shrinkVert();
         	
         if (CONSOLE_LOGGING_ENABLED)
         System.out.println(" " + startX + "\t| " + startY);
@@ -208,6 +238,26 @@ public class BalloonApplet extends Applet
     {
     	startX=boundX;
         startY=boundY;
+    }
+    public void enlargeHoriz()
+    {
+    	displayWidth+=50;
+    	boundX = displayWidth-50;
+    }
+    public void shrinkHoriz()
+    {
+    	displayWidth-=50;
+    	boundX = displayWidth-50;
+    }
+    public void enlargeVert()
+    {
+    	displayHeight+=50;
+    	boundY = displayHeight-76;
+    }
+    public void shrinkVert()
+    {
+    	displayHeight-=50;
+    	boundY = displayHeight-76;
     }
     
 }   //endProgram    
