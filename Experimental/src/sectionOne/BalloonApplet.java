@@ -261,12 +261,3 @@ public class BalloonApplet extends Applet
     }
     
 }   //endProgram    
-
-
-
-
-
-
-
-
-
