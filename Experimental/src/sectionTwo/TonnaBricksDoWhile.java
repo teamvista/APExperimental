@@ -10,6 +10,10 @@ public class TonnaBricksDoWhile extends Applet {
 	//I DECLARE!!
 	public static final int DISPLAY_WIDTH = 600;
 	public static final int DISPLAY_HEIGHT = 600;
+	public int brickWidth = 50;
+	public int brickHeight = 50;
+	public int currentX = 0;
+	public int currentY = 0;
 	
 	public void init(){
 		resize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
