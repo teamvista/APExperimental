@@ -87,6 +87,8 @@ public class TypeTester {
 		
 		inlet.close();
 		
+		// let's do a little merge practice, shall we?
+		
 	}
 
 }
