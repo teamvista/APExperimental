@@ -16,12 +16,6 @@ public class TonnaBricksWhile extends Applet {
 	public int currentY = 0;
 	public int brickGap = 5;
 	
-	public void init(){
-		resize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
-		
-		
-	}
-	
 	public void paint(Graphics g){
 		
 	}
